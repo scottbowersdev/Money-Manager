@@ -1,0 +1,10 @@
+blocks
+error_log
+_notes
+.vscode/
+/vendor
+.env
+.env.dev
+logs
+_log
+node_modules

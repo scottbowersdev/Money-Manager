@@ -1,0 +1,36 @@
+Options +FollowSymLinks -MultiViews 
+
+RewriteEngine On
+
+RewriteCond %{HTTP_HOST} ^www.mm.scottbowers.dev [NC]
+RewriteRule ^(.*)$ https://mm.scottbowers.dev/$1 [L,R=301]
+
+#RewriteCond %{REQUEST_FILENAME} -l [OR]
+#RewriteCond %{REQUEST_FILENAME} -f [OR]
+#RewriteCond %{REQUEST_FILENAME} -d
+#RewriteRule ^ - [L]
+
+ErrorDocument 404 http://www.projects.scottbowers.me/mm/status-pages/404.html
+ErrorDocument 503 http://www.projects.scottbowers.me/mm/status-pages/503.html
+
+DirectoryIndex login.php
+
+# ------------------------
+# FRONTEND
+# ------------------------
+RewriteRule ^login/?$ login.php [L]
+
+RewriteRule ^signup/1/?$ sign-up-1.php [L]
+RewriteRule ^signup/2/?$ sign-up-2.php [L]
+
+
+# ------------------------
+# ADMIN
+# ------------------------
+RewriteRule ^admin/month/([a-zA-Z0-9-]+)/([a-zA-Z0-9-]+)/?$ admin/month.php?m=$1&y=$2 [L]
+
+RewriteRule ^admin/recurring-payments/?$ admin/recurring-payments.php [L]
+
+RewriteRule ^admin/wishlist/?$ admin/wishlist.php [L]
+
+RewriteRule ^admin/logout/?$ admin/logout.php [L]

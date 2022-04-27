@@ -1,0 +1,30 @@
+{
+	"config": {
+		"ssh": {
+			"user": "scottbowers.dev",
+			"server": "ssh.stackcp.com",
+			"folders": {
+				"live": "~/public_html/projects/mm/"
+			}
+		}
+	},
+	"scripts": {
+		"sync:live": "echo Starting File Sync && rsync -av --exclude-from=\".syncignore\" -e \"ssh -p22 -i ~/.ssh/sync\" * . $npm_package_config_ssh_user@$npm_package_config_ssh_server:$npm_package_config_ssh_folders_live && ssh -i ~/.ssh/sync $npm_package_config_ssh_user@$npm_package_config_ssh_server \"cd $npm_package_config_ssh_folders_live && /usr/bin/php74 -d memory_limit=-1 -f /usr/bin/composer update && npm install\" && echo Finished File Sync",
+		"push:git": "clear && git config core.ignorecase false && branch=\"$(git symbolic-ref -q HEAD)\" || \"dev\" && branch=${branch##refs/heads/} && branch=${branch:-HEAD} && echo Pushing to Branch \"$branch\" && echo Please type your commit message && read msg && clear && git add . && git commit -m \"$msg\" && git push origin \"$branch\"",
+		"push:live": "clear && echo Starting Live Push && yarn sync:live && echo Finished Live Push",
+		"pull:git": "clear && git config core.ignorecase false && branch=\"$(git symbolic-ref -q HEAD)\" || \"dev\" && branch=${branch##refs/heads/} && branch=${branch:-HEAD} && echo Pulling from Branch \"$branch\" && clear && git pull && php composer update",
+		"commit": "clear && echo Please type your commit message && read msg && clear && git add . && git commit -m \"$msg\""
+	},
+	"name": "newbalanceteam",
+	"version": "1.0.0",
+	"main": "index.js",
+	"license": "MIT",
+	"dependencies": {
+		"canvasjs": "^1.8.3",
+		"featherlight": "^1.7.14",
+		"slick-slider": "^1.8.2",
+		"sweetalert": "^2.1.2",
+		"sweetalert2": "^11.4.8",
+		"tooltipster": "^4.2.8"
+	}
+}
