@@ -37,6 +37,19 @@ if($_ENV['DEBUG'] == 'true') {
 
 /*
   *****************************
+  PDO Shorthand function
+  *****************************
+*/
+class MyPDO extends PDO {
+    public function shorthand($sql, $bind = NULL) {
+        $stmt = $this->prepare($sql);
+        $stmt->execute($bind);
+        return $stmt;
+    }
+}
+
+/*
+  *****************************
   Database Connection
   *****************************
 */

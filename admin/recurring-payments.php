@@ -142,7 +142,7 @@ if(isset($_POST['submit-edit'])) {
 <!-- Page Includes -->
 <?php include('../inc/support/page_includes.php'); ?>
 <!-- Charts -->
-<script src="<?= $url_website ?>blocks/charts/jquery.canvasjs.min.js"></script>
+<script src="<?= $url_website ?>node_modules/canvasjs/dist/jquery.canvasjs.min.js"></script>
 <!-- Charts -->
 <script type="text/javascript">
 $(document).ready(function(e) {

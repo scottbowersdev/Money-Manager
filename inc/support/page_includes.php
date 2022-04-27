@@ -23,12 +23,12 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 <!-- jQuery -->
 <!-- Tooltip -->
-<link rel="stylesheet" type="text/css" href="<?= $url_website ?>blocks/tooltip/css/tooltipster.css" />
-<script type="text/javascript" src="<?= $url_website ?>blocks/tooltip/js/jquery.tooltipster.min.js"></script>
+<link rel="stylesheet" type="text/css" href="<?= $url_website ?>node_modules/tooltipster/src/css/tooltipster.css" />
+<script type="text/javascript" src="<?= $url_website ?>node_modules/tooltipster/src/js/tooltipster.js"></script>
 <!-- Tooltip -->
 <!-- Sweet Alerts -->
-<link href="<?= $url_website; ?>blocks/sweetalerts/sweet-alert.css" rel="stylesheet" type="text/css">
-<script src="<?= $url_website; ?>blocks/sweetalerts/sweet-alert.js"></script>
+<link href="<?= $url_website; ?>node_modules/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet" type="text/css">
+<script src="<?= $url_website; ?>node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
 <script type="text/javascript">
 	<?php if(isset($_SESSION['msgBox'])) { ?>
 		$(window).load(function(){
