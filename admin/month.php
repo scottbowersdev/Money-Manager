@@ -191,17 +191,17 @@ $(document).ready(function(e) {
 							   window.location.reload(1);
 							}, 2000);
 							  
-							swal({ title: "Success", text: "Monthly income updated", type: "success", timer: 2000 });
+							swal({ title: "Success", text: "Monthly income updated", icon: "success", timer: 2000 });
 							  
 						  } else  {
 							
-							swal({ title: "Error", text: "There has been an error with your submission. Please try again later.", type: "error", timer: 5000 });
+							swal({ title: "Error", text: "There has been an error with your submission. Please try again later.", icon: "error", timer: 5000 });
 							  
 						  }
 						  
 					  }, error: function(jqXHR, textStatus, errorThrown) {
 						  
-						  swal({ title: "Error", text: "There has been an error with your submission. Please try again later.<Br />"+jqXHR+'--'+textStatus+'--'+errorThrown, type: "error", timer: 10000 });
+						  swal({ title: "Error", text: "There has been an error with your submission. Please try again later.<Br />"+jqXHR+'--'+textStatus+'--'+errorThrown, icon: "error", timer: 10000 });
 						  
 					  }
 				  });
@@ -236,17 +236,17 @@ $(document).ready(function(e) {
 					   window.location.reload(1);
 					}, 2000);
 					  
-					swal({ title: "Success", text: "Outogoing marked as "+(btnFunction == 'paid' ? "paid" : "not paid"), type: "success", timer: 2000 });
+					swal({ title: "Success", text: "Outogoing marked as "+(btnFunction == 'paid' ? "paid" : "not paid"), icon: "success", timer: 2000 });
 					  
 				  } else  {
 					
-					swal({ title: "Error", text: "There has been an error with your submission. Please try again later.", type: "error", timer: 5000 });
+					swal({ title: "Error", text: "There has been an error with your submission. Please try again later.", icon: "error", timer: 5000 });
 					  
 				  }
 				  
 			  }, error: function(jqXHR, textStatus, errorThrown) {
 				  
-				  swal({ title: "Error", text: "There has been an error with your submission. Please try again later.<Br />"+jqXHR+'--'+textStatus+'--'+errorThrown, type: "error", timer: 10000 });
+				  swal({ title: "Error", text: "There has been an error with your submission. Please try again later.<Br />"+jqXHR+'--'+textStatus+'--'+errorThrown, icon: "error", timer: 10000 });
 				  
 			  }
 		  });
@@ -267,7 +267,7 @@ $(document).ready(function(e) {
 		// Delete Outgoing	
 		} else if(btnFunction == 'delete') {
 			
-			swal({ title: "Are you sure?", text: "Are you sure you wish to delete this outgoing?", type: "warning", showCancelButton: true, confirmButtonText: "Yes, delete it!", closeOnConfirm: false }, function(){
+			swal({ title: "Are you sure?", text: "Are you sure you wish to delete this outgoing?", icon: "warning", showCancelButton: true, confirmButtonText: "Yes, delete it!", closeOnConfirm: false }, function(){
 							
 				$.ajax({
 				  url : "<?= $url_website ?>admin/ajax/outgoing-delete.php",
@@ -281,17 +281,17 @@ $(document).ready(function(e) {
 						   window.location.reload(1);
 						}, 2000);
 						  
-						swal({ title: "Success", text: "Outogoing has been deleted.", type: "success", timer: 2000 });
+						swal({ title: "Success", text: "Outogoing has been deleted.", icon: "success", timer: 2000 });
 						  
 					  } else  {
 						
-						swal({ title: "Error", text: "There has been an error with your submission. Please try again later.", type: "error", timer: 5000 });
+						swal({ title: "Error", text: "There has been an error with your submission. Please try again later.", icon: "error", timer: 5000 });
 						  
 					  }
 					  
 				  }, error: function(jqXHR, textStatus, errorThrown) {
 					  
-					  swal({ title: "Error", text: "There has been an error with your submission. Please try again later.<Br />"+jqXHR+'--'+textStatus+'--'+errorThrown, type: "error", timer: 10000 });
+					  swal({ title: "Error", text: "There has been an error with your submission. Please try again later.<Br />"+jqXHR+'--'+textStatus+'--'+errorThrown, icon: "error", timer: 10000 });
 					  
 				  }
 			  });

@@ -125,17 +125,17 @@ $(document).ready(function(e) {
 					   window.location.reload(1);
 					}, 2000);
 					  
-					swal({ title: "Success", text: "Wishlist item marked as purchased", type: "success", timer: 2000 });
+					swal({ title: "Success", text: "Wishlist item marked as purchased", icon: "success", timer: 2000 });
 					  
 				  } else  {
 					
-					swal({ title: "Error", text: "There has been an error with your submission. Please try again later.", type: "error", timer: 5000 });
+					swal({ title: "Error", text: "There has been an error with your submission. Please try again later.", icon: "error", timer: 5000 });
 					  
 				  }
 				  
 			  }, error: function(jqXHR, textStatus, errorThrown) {
 				  
-				  swal({ title: "Error", text: "There has been an error with your submission. Please try again later.<Br />"+jqXHR+'--'+textStatus+'--'+errorThrown, type: "error", timer: 10000 });
+				  swal({ title: "Error", text: "There has been an error with your submission. Please try again later.<Br />"+jqXHR+'--'+textStatus+'--'+errorThrown, icon: "error", timer: 10000 });
 				  
 			  }
 		  });
@@ -157,7 +157,7 @@ $(document).ready(function(e) {
 		// Delete Outgoing	
 		} else if(btnFunction == 'delete') {
 			
-			swal({ title: "Are you sure?", text: "Are you sure you wish to delete this wishlist item?", type: "warning", showCancelButton: true, confirmButtonText: "Yes, delete it!", closeOnConfirm: false }, function(){
+			swal({ title: "Are you sure?", text: "Are you sure you wish to delete this wishlist item?", icon: "warning", showCancelButton: true, confirmButtonText: "Yes, delete it!", closeOnConfirm: false }, function(){
 							
 				$.ajax({
 				  url : "<?= $url_website ?>admin/ajax/wishlist-delete.php",
@@ -171,17 +171,17 @@ $(document).ready(function(e) {
 						   window.location.reload(1);
 						}, 2000);
 						  
-						swal({ title: "Success", text: "Wishlist item has been deleted.", type: "success", timer: 2000 });
+						swal({ title: "Success", text: "Wishlist item has been deleted.", icon: "success", timer: 2000 });
 						  
 					  } else  {
 						
-						swal({ title: "Error", text: "There has been an error with your submission. Please try again later.", type: "error", timer: 5000 });
+						swal({ title: "Error", text: "There has been an error with your submission. Please try again later.", icon: "error", timer: 5000 });
 						  
 					  }
 					  
 				  }, error: function(jqXHR, textStatus, errorThrown) {
 					  
-					  swal({ title: "Error", text: "There has been an error with your submission. Please try again later.<Br />"+jqXHR+'--'+textStatus+'--'+errorThrown, type: "error", timer: 10000 });
+					  swal({ title: "Error", text: "There has been an error with your submission. Please try again later.<Br />"+jqXHR+'--'+textStatus+'--'+errorThrown, icon: "error", timer: 10000 });
 					  
 				  }
 			  });
