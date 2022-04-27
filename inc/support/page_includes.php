@@ -24,18 +24,18 @@
 <!-- jQuery -->
 <!-- Tooltip -->
 <link rel="stylesheet" type="text/css" href="<?= $url_website ?>node_modules/tooltipster/src/css/tooltipster.css" />
-<script type="text/javascript" src="<?= $url_website ?>node_modules/tooltipster/src/js/tooltipster.js"></script>
+<script type="text/javascript" src="<?= $url_website ?>node_modules/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
 <!-- Tooltip -->
 <!-- Sweet Alerts -->
 <link href="<?= $url_website; ?>node_modules/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet" type="text/css">
-<script src="<?= $url_website; ?>node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
+<script src="<?= $url_website; ?>node_modules/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript">
 	<?php if(isset($_SESSION['msgBox'])) { ?>
 		$(window).load(function(){
 			swal({
 				title: "<?= $_SESSION['msgBox']['header']; ?>",
 				text: "<?= $_SESSION['msgBox']['content']; ?>",
-				type: "<?= $_SESSION['msgBox']['type']; ?>",
+				icon: "<?= $_SESSION['msgBox']['type']; ?>",
 				timer: <?= $_SESSION['msgBox']['timer']; ?>
 			});
 		});

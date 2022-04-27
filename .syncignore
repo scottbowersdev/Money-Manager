@@ -5,3 +5,4 @@ error_log
 _notes
 /vendor
 _log
+/style/main.css
