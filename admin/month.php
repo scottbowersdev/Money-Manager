@@ -154,9 +154,24 @@ if(isset($_POST['submit-edit'])) {
 <!-- Page Includes -->
 <?php include('../inc/support/page_includes.php'); ?>
 <!-- Charts -->
+<script type="text/javascript" src="<?= $url_website ?>node_modules/jquery-touchswipe/jquery.touchSwipe.min.js"></script>
 <script src="<?= $url_website ?>node_modules/canvasjs/dist/jquery.canvasjs.min.js"></script>
 <!-- Charts -->
 <script type="text/javascript">
+$(function() {
+  $(".months-table .row").swipe( {
+
+    swipeLeft:function(event, direction, distance, duration) {
+		alert("You swiped " + direction);  
+	},
+
+	swipeRight:function(event, direction, distance, duration) {
+		alert("You swiped " + direction); 
+	},
+
+  });
+});
+
 $(document).ready(function(e) {
     
 	// New outgoing show

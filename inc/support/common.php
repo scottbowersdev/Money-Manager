@@ -75,7 +75,7 @@ function userLoggedIn()
   global $url_website;
   if ($_SESSION['admin']['logged_in'] != 1) {
     $return_url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-    header('Location: ' . $url_website . '?return_url=' . $return_url);
+    header('Location: ' . $url_website);
   }
 }
 
