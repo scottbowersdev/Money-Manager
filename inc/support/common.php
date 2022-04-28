@@ -14,7 +14,7 @@ require(__DIR__.'/../../vendor/autoload.php');
   *****************************
 */
 $env_root = dirname(__DIR__, 2);
-if($_SERVER['SERVER_ADDR'] == "92.234.168.29") {
+if($_SERVER['SERVER_ADDR'] == "127.0.0.1") {
 	$dotenv = Dotenv\Dotenv::createImmutable($env_root);
 } else {
 	$dotenv = Dotenv\Dotenv::createImmutable($env_root, '.env.dev');
