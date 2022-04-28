@@ -411,12 +411,18 @@ $(document).ready(function(e) {
 		$dailyTotals = array();
         foreach($resGetOutgoings as $item) { 
           
-        $monthlyTotal += $item['cost'];
+			$monthlyTotal += $item['cost'];
+			
+			$dailyTotals[$item['day']] += $item['cost'];
+			
+			$itemDayObject = DateTime::createFromFormat('d', $item['day']);
+			$ordinalSuffix = $itemDayObject->format('S');
+
+			preg_match_all("/\\[(.*?)\\]/", $item['title'], $matches); 
 		
-		$dailyTotals[$item['day']] += $item['cost'];
-        
-        $itemDayObject = DateTime::createFromFormat('d', $item['day']);
-        $ordinalSuffix = $itemDayObject->format('S');
+			if($matches[1][0] != '') {
+				$item['title'] = str_replace("[".$matches[1][0]."] ", "<span class=\"mob-hide\">[".$matches[1][0]."]</span> ", $item['title']);
+			}
                 
         ?>
         <div class="row<?= ($count == $totGetTotRecurring ? ' last-recurring"' : FALSE) ?>">

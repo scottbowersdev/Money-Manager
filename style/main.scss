@@ -992,10 +992,12 @@ input[type=submit].button {
 				}
 				.col.cost {
 					width: 10%;
+					vertical-align: middle;
 				}
 				.col.actions {
 					width: 20%;
 					text-align: center;
+					vertical-align: middle;
 					.fa {
 						font-size: 1.1em;
 						color: #485561;
@@ -1620,7 +1622,7 @@ input[type=submit].button {
 				.right {
 					text-align: left;
 					#month-totals {
-						font-size: 1.3em;
+						font-size: 1.1em;
 						max-height: 60px;
 						line-height: normal !important;
 						padding-top: 18px;
@@ -1655,6 +1657,14 @@ input[type=submit].button {
 			}
 			#main-content {
 				.months-table {
+					.row {
+						.col {
+							padding: 15px 7px !important;
+						}
+						.mob-hide {
+							display: none;
+						}
+					}
 					.col.day {
 						width: 10%;
 						text-align: center;

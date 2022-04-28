@@ -18,7 +18,7 @@
 <title><?= $pageTitle." - ".getSettings('meta_title') ?></title>
 <!-- User Defined Data -->
 <!-- Stylesheet -->
-<link href="<?= $url_website ?>style/main.css?v=3" rel="stylesheet" type="text/css">
+<link href="<?= $url_website ?>style/main.css?v=5" rel="stylesheet" type="text/css">
 <!-- Stylesheet -->
 <!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>

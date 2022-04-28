@@ -62,7 +62,7 @@ if(isset($_POST['login'])) {
 			$insertLog = $db->prepare("INSERT INTO `user_logs` (`user_id`, `ip`, `date`) VALUES (:user_id, :ip, NOW())");
 			$insertLog->execute(array("user_id"=>$getUserInformation['id'], "ip"=>$_SERVER['REMOTE_ADDR']));
 				
-			header("Location: ".$url_website."admin/month/".date('n')."/".date('Y')."/");
+			header("Location: ".$url_website."admin/month-list/");
 			exit();
 
 			
