@@ -851,73 +851,9 @@ input[type=submit].button {
   margin: 0 auto;
 }
 
-#container #left-col {
-  border-right: 1px solid #ebebeb;
-}
-
-#container #left-col #logo {
-  height: 90px;
-  background: #FFF;
-  margin: 0 0 10px 0;
-  border-bottom: 1px solid #ebebeb;
-}
-
-#container #left-col #logo object {
-  display: block;
-  padding: 18px 0 0 0;
-  margin: auto;
-  height: 50px;
-  width: 60px;
-}
-
-#container #left-col #nav {
-  list-style: none !important;
-  margin-bottom: 40px;
-}
-
-#container #left-col #nav h4 {
-  margin: 30px 0 5px 0;
-  font-weight: 700;
-  font-size: 0.95em;
-  color: #5D5E60;
-  padding-left: 20px;
-}
-
-#container #left-col #nav li {
-  list-style: none;
-}
-
-#container #left-col #nav li a {
-  display: block;
-  color: #36413E;
-  padding: 10px 30px;
-  line-height: normal;
-  font-weight: 700;
-  font-size: 1em;
-}
-
-#container #left-col #nav li a:hover {
-  background: #36413E;
-  color: #FFF;
-}
-
-#container #left-col #nav li a .small {
-  display: none;
-}
-
-#container #left-col #nav li a .fa-solid {
-  font-size: 0.7em;
-  margin-right: 5px;
-}
-
-#container #left-col #nav li a.selected {
-  background: #36413E;
-  color: #FFF;
-}
-
 #container #main-col #header {
-  height: 90px;
-  line-height: 90px !important;
+  height: 60px;
+  line-height: 60px !important;
   border-bottom: 1px solid #ebebeb;
   background-color: #FFF;
 }
@@ -928,10 +864,18 @@ input[type=submit].button {
   padding-right: 0;
 }
 
+#container #main-col #header .padding object {
+  width: 30px;
+  display: block;
+  margin-top: 15px;
+  margin-right: 30px;
+  float: left;
+}
+
 #container #main-col #header h1 {
   float: left;
-  line-height: 90px;
-  height: 90px;
+  line-height: 60px;
+  height: 60px;
   color: #39444f;
   font-weight: 700;
   font-size: 1.9em;
@@ -952,34 +896,21 @@ input[type=submit].button {
 
 #container #main-col #header .right div {
   float: right;
-  max-height: 90px;
+  max-height: 60px;
 }
 
 #container #main-col #header .right .fa {
-  height: 90px;
-  line-height: 90px;
-  width: 90px;
-  padding: 0;
-  text-align: center;
+  height: 60px;
+  line-height: 60px;
+  padding: 0 25px;
+  text-align: center !important;
   font-size: 1.2em;
   color: #FFF;
   cursor: pointer;
-}
-
-#container #main-col #header .right #btn-menu {
-  background: #36413E;
-}
-
-#container #main-col #header .right #btn-menu:hover {
-  background: #333;
-}
-
-#container #main-col #header .right #btn-new-outgoing {
-  background: #8D8D92;
-}
-
-#container #main-col #header .right #btn-new-outgoing:hover {
-  background: #5D5E60;
+  background: #F7F8FA;
+  color: #36413E;
+  border: 1px solid #ebebeb;
+  float: right;
 }
 
 #container #main-col #header .right #month-totals {
@@ -1074,6 +1005,36 @@ input[type=submit].button {
 
 #container #main-col #right-nav ul li a:hover {
   color: #D7D6D6;
+}
+
+#container #main-col #main-content .months-list {
+  padding: 20px 30px 30px 30px;
+}
+
+#container #main-col #main-content .months-list h2 {
+  font-weight: 500;
+  font-size: 1.3em;
+  margin: 20px 0 10px 0;
+}
+
+#container #main-col #main-content .months-list a {
+  display: block;
+  background: #FFF;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  border-radius: 5px;
+  min-width: 300px;
+  -webkit-box-shadow: 0px 0px 15px -6px rgba(0, 0, 0, 0.17);
+  box-shadow: 0px 0px 15px -6px rgba(0, 0, 0, 0.17);
+  margin: 0 0 5px 0;
+  padding: 15px 20px;
+  font-weight: 600;
+}
+
+#container #main-col #main-content .months-list a .fa-solid {
+  text-align: right;
+  float: right;
+  line-height: 30px;
 }
 
 #container #main-col #main-content .months-table {
@@ -1445,11 +1406,7 @@ input[type=submit].button {
     display: none;
   }
   #container #main-col #header .right {
-    width: 100%;
     text-align: left;
-  }
-  #container #main-col #header .right #month-totals {
-    float: none;
   }
   #container #main-col #right-nav {
     width: 300px;
@@ -1536,18 +1493,20 @@ input[type=submit].button {
   }
   #container #main-col #header {
     height: 60px;
-    line-height: 60px;
+    line-height: 60px !important;
+  }
+  #container #main-col #header .padding object {
+    margin-top: 15px;
+    margin-right: 20px;
   }
   #container #main-col #header h1 {
     display: none;
   }
   #container #main-col #header .right {
-    width: 100%;
     text-align: left;
   }
   #container #main-col #header .right #month-totals {
     font-size: 1.3em;
-    float: none;
     max-height: 60px;
     line-height: normal !important;
     padding-top: 18px;
@@ -1706,21 +1665,27 @@ input[type=submit].button {
   }
   #container #main-col #header {
     height: 60px;
-    line-height: 60px;
+    line-height: 60px !important;
+  }
+  #container #main-col #header .padding {
+    padding-left: 20px;
+  }
+  #container #main-col #header .padding object {
+    margin-top: 15px;
+    margin-right: 20px;
   }
   #container #main-col #header h1 {
     display: none;
   }
   #container #main-col #header .right {
-    width: 100%;
     text-align: left;
   }
   #container #main-col #header .right #month-totals {
     font-size: 1.3em;
-    float: none;
     max-height: 60px;
     line-height: normal !important;
     padding-top: 18px;
+    margin-right: 10px;
   }
   #container #main-col #header .right #month-totals small {
     display: block;
@@ -1807,19 +1772,25 @@ input[type=submit].button {
   .modal .modal-close {
     margin: -10px -10px 0 0;
   }
+  #new-outgoing .row label {
+    margin-bottom: 3px;
+  }
   #new-outgoing .row .input-day {
     width: 100%;
     float: none;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
   }
   #new-outgoing .row .input-cost {
     width: 100%;
     float: none;
   }
+  #edit-outgoing .row label {
+    margin-bottom: 3px;
+  }
   #edit-outgoing .row .input-day {
     width: 100%;
     float: none;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
   }
   #edit-outgoing .row .input-cost {
     width: 100%;
@@ -1867,6 +1838,11 @@ input[type=submit].button {
     width: 100%;
     height: 300px;
     float: none;
+  }
+  .modal h2 {
+    margin-bottom: 20px;
+    font-size: 1.3em;
+    font-weight: 600;
   }
 }
 /*# sourceMappingURL=main.css.map */

@@ -759,74 +759,28 @@ input[type=submit].button {
 	height: auto;
 	display: table;
 	margin: 0 auto;
-	#left-col {
-		border-right: 1px solid #ebebeb;
-		#logo {
-			height: 90px;
-			background: #FFF;
-			margin: 0 0 10px 0;
-			border-bottom: 1px solid #ebebeb;
-			object {
-				display: block;
-				padding: 18px 0 0 0;
-				margin: auto;
-				height: 50px;
-				width: 60px;
-			}
-		}
-		#nav {
-			list-style: none !important;
-			margin-bottom: 40px;
-			h4 {
-				margin: 30px 0 5px 0;
-				font-weight: 700;
-				font-size: 0.95em;
-				color: #5D5E60;
-				padding-left: 20px;
-			}
-			li {
-				list-style: none;
-				a {
-					display: block;
-					color: #36413E;
-					padding: 10px 30px;
-					line-height: normal;
-					font-weight: 700;
-					font-size: 1em;
-					&:hover {
-						background: #36413E;
-						color: #FFF;
-					}
-					.small {
-						display: none;
-					}
-					.fa-solid {
-						font-size: 0.7em;
-						margin-right: 5px;
-					}
-				}
-				a.selected {
-					background: #36413E;
-					color: #FFF;
-				}
-			}
-		}
-	}
 	#main-col {
 		#header {
-			height: 90px;
-			line-height: 90px !important;
+			height: 60px;
+			line-height: 60px !important;
 			border-bottom: 1px solid #ebebeb;
 			background-color: #FFF;
 			.padding {
 				padding-top: 0;
 				padding-bottom: 0;
 				padding-right: 0;
+				object {
+					width: 30px;
+					display: block;
+					margin-top: 15px;
+					margin-right: 30px;
+					float: left;
+				}
 			}
 			h1 {
 				float: left;
-				line-height: 90px;
-				height: 90px;
+				line-height: 60px;
+				height: 60px;
 				color: #39444f;
 				font-weight: 700;
 				font-size: 1.9em;
@@ -845,28 +799,31 @@ input[type=submit].button {
 			.right {
 				div {
 					float: right;
-					max-height: 90px;
+					max-height: 60px;
 				}
 				.fa {
-					height: 90px;
-					line-height: 90px;
-					width: 90px;
-					padding: 0;
-					text-align: center;
+					height: 60px;
+					line-height: 60px;
+					padding: 0 25px;
+					text-align: center !important;
 					font-size: 1.2em;
 					color: #FFF;
 					cursor: pointer;
+					background: #F7F8FA;
+					color: #36413E;
+					border: 1px solid #ebebeb;
+					float: right;
 				}
 				#btn-menu {
-					background: #36413E;
+					
 					&:hover {
-						background: #333;
+						
 					}
 				}
 				#btn-new-outgoing {
-					background: #8D8D92;
+					
 					&:hover {
-						background: #5D5E60;
+						
 					}
 				}
 				#month-totals {
@@ -950,6 +907,37 @@ input[type=submit].button {
 						&:hover {
 							color: #D7D6D6;
 						}
+					}
+				}
+			}
+		}
+		#main-content {
+			.months-list {
+				padding: 20px 30px 30px 30px;
+				h2 {
+					font-weight: 500;
+					font-size: 1.3em;
+					margin: 20px 0 10px 0;
+				}
+				a {
+					display: block;
+					background: #FFF;
+					-webkit-box-sizing: border-box;
+					-moz-box-sizing: border-box;
+					box-sizing: border-box;
+					-webkit-border-radius: 5px;
+					-moz-border-radius: 5px;
+					border-radius: 5px;
+					min-width: 300px;
+					-webkit-box-shadow: 0px 0px 15px -6px rgba(0,0,0,0.17); 
+					box-shadow: 0px 0px 15px -6px rgba(0,0,0,0.17);
+					margin: 0 0 5px 0;
+					padding: 15px 20px;
+					font-weight: 600;
+					.fa-solid {
+						text-align: right;
+						float: right;
+						line-height: 30px;
 					}
 				}
 			}
@@ -1304,11 +1292,7 @@ input[type=submit].button {
 					display: none;
 				}
 				.right {
-					width: 100%;
 					text-align: left;
-					#month-totals {
-						float: none;
-					}
 				}
 			}
 			#right-nav {
@@ -1418,16 +1402,20 @@ input[type=submit].button {
 		#main-col {
 			#header {
 				height: 60px;
-				line-height: 60px;
+				line-height: 60px !important;
+				.padding {
+					object {
+					margin-top: 15px;
+					margin-right: 20px;
+					}
+				}
 				h1 {
 					display: none;
 				}
 				.right {
-					width: 100%;
 					text-align: left;
 					#month-totals {
 						font-size: 1.3em;
-						float: none;
 						max-height: 60px;
 						line-height: normal !important;
 						padding-top: 18px;
@@ -1618,19 +1606,25 @@ input[type=submit].button {
 		#main-col {
 			#header {
 				height: 60px;
-				line-height: 60px;
+				line-height: 60px !important;
+				.padding {
+					padding-left: 20px;
+					object {
+					margin-top: 15px;
+					margin-right: 20px;
+					}
+				}
 				h1 {
 					display: none;
 				}
 				.right {
-					width: 100%;
 					text-align: left;
 					#month-totals {
 						font-size: 1.3em;
-						float: none;
 						max-height: 60px;
 						line-height: normal !important;
 						padding-top: 18px;
+						margin-right: 10px;
 						small {
 							display: block;
 						}
@@ -1737,10 +1731,13 @@ input[type=submit].button {
 	}
 	#new-outgoing {
 		.row {
+			label {
+				margin-bottom: 3px;
+			}
 			.input-day {
 				width: 100%;
 				float: none;
-				margin-bottom: 30px;
+				margin-bottom: 20px;
 			}
 			.input-cost {
 				width: 100%;
@@ -1750,10 +1747,13 @@ input[type=submit].button {
 	}
 	#edit-outgoing {
 		.row {
+			label {
+				margin-bottom: 3px;
+			}
 			.input-day {
 				width: 100%;
 				float: none;
-				margin-bottom: 30px;
+				margin-bottom: 20px;
 			}
 			.input-cost {
 				width: 100%;
@@ -1809,6 +1809,14 @@ input[type=submit].button {
 		width: 100%;
 		height: 300px;
 		float: none;
+	}
+
+	.modal {
+		h2 {
+			margin-bottom: 20px;
+			font-size: 1.3em;
+			font-weight: 600;
+		}
 	}
 	
 }

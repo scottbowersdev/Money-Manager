@@ -24,6 +24,8 @@ RewriteRule ^signup/2/?$ sign-up-2.php [L]
 # ------------------------
 # ADMIN
 # ------------------------
+RewriteRule ^admin/month-list/?$ admin/month-list.php [L]
+
 RewriteRule ^admin/month/([a-zA-Z0-9-]+)/([a-zA-Z0-9-]+)/?$ admin/month.php?m=$1&y=$2 [L]
 
 RewriteRule ^admin/recurring-payments/?$ admin/recurring-payments.php [L]

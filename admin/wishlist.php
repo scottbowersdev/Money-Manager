@@ -269,8 +269,6 @@ $(document).ready(function(e) {
 <!-- Modal Boxes -->
 
 <div id="container">
-
-  <?php include('../inc/pages/left-col.php'); ?>
   
   <div id="main-col">
   
