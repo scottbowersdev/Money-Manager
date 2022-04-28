@@ -158,6 +158,7 @@ if(isset($_POST['submit-edit'])) {
 <script src="<?= $url_website ?>node_modules/canvasjs/dist/jquery.canvasjs.min.js"></script>
 <!-- Charts -->
 <script type="text/javascript">
+/*
 $(function() {
   $(".months-table .row").swipe( {
 
@@ -171,7 +172,7 @@ $(function() {
 
   });
 });
-
+*/
 $(document).ready(function(e) {
     
 	// New outgoing show

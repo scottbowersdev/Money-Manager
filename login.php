@@ -17,7 +17,7 @@ $subPage = '';
 /**
  * User already logged in
  */
-if($_SESSION['admin']['logged_in'] == 1) {
+if(!empty($_SESSION['admin']['logged_in']) && $_SESSION['admin']['logged_in'] == 1) {
 	header("Location: ".$url_website."admin/month/".date('n')."/".date('Y')."/");
 	exit();
 }
@@ -47,6 +47,8 @@ if(isset($_POST['login'])) {
 				
 		// If password checks out					
 		if($password_check) {
+
+			
 			
 			$_SESSION['admin']['logged_in'] = 1;
 			$_SESSION['admin']['id'] = $getUserInformation['id'];
@@ -59,18 +61,10 @@ if(isset($_POST['login'])) {
 			
 			$insertLog = $db->prepare("INSERT INTO `user_logs` (`user_id`, `ip`, `date`) VALUES (:user_id, :ip, NOW())");
 			$insertLog->execute(array("user_id"=>$getUserInformation['id'], "ip"=>$_SERVER['REMOTE_ADDR']));
-			
-			if(isset($_GET['return_url'])) {
 				
-			  header("Location: ".$_GET['return_url']);
-			  exit();
-			  
-			} else {
-				
-			  header("Location: ".$url_website."admin/month/".date('n')."/".date('Y')."/");
-			  exit();
-			  
-			}
+			header("Location: ".$url_website."admin/month/".date('n')."/".date('Y')."/");
+			exit();
+
 			
 		} else {
 			
@@ -112,7 +106,7 @@ if(isset($_POST['login'])) {
   	<div class="padding">
       <div class="row col1">
         <div class="fa fa-fw fa-user"></div>
-        <input type="text" name="username" id="username" autofocus placeholder="Username" value="<?= (is_array($_SESSION['msgBox']) ? $_POST['username'] : FALSE) ?>" />
+        <input type="text" name="username" id="username" autofocus placeholder="Username" value="<?= (!empty($_SESSION['msgBox']) ? $_POST['username'] : FALSE) ?>" />
         <div class="clr"></div>
       </div>
       <div class="row col1">

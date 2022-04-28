@@ -10,9 +10,6 @@ RewriteRule ^(.*)$ https://mm.scottbowers.dev/$1 [L,R=301]
 #RewriteCond %{REQUEST_FILENAME} -d
 #RewriteRule ^ - [L]
 
-ErrorDocument 404 http://www.projects.scottbowers.me/mm/status-pages/404.html
-ErrorDocument 503 http://www.projects.scottbowers.me/mm/status-pages/503.html
-
 DirectoryIndex login.php
 
 # ------------------------

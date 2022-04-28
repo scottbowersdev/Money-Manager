@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Lato:400,300,700,300italic,400italic,900");
-@import "reset.css";
+//@import url("/reset.css");
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css");
 
 $bg_cream: #F7F8FA;
@@ -1009,7 +1009,7 @@ input[type=submit].button {
 					width: 20%;
 					text-align: center;
 					.fa {
-						font-size: 1.4em;
+						font-size: 1.1em;
 						color: #485561;
 						margin: 0 10px;
 					}
@@ -1630,7 +1630,7 @@ input[type=submit].button {
 						float: none;
 						max-height: 60px;
 						line-height: normal !important;
-						padding-top: 11px;
+						padding-top: 18px;
 						small {
 							display: block;
 						}
@@ -1677,50 +1677,13 @@ input[type=submit].button {
 						text-align: center;
 						.fa {
 							margin: 0 3px;
-							font-size: 0.8em;
 						}
 					}
 				}
 				.totals.padding {
-					padding: 30px;
+					padding: 20px;
 				}
 				.totals {
-					>.item.total-out {
-						padding: 30px 0;
-						width: 50%;
-						float: left;
-						margin: 0;
-						h2 {
-							font-size: 1.6em;
-						}
-						h4 {
-							font-size: 0.7em;
-						}
-					}
-					>.item.total-remaining {
-						padding: 30px 0;
-						width: 50%;
-						float: right;
-						margin: 0;
-						h2 {
-							font-size: 1.6em;
-						}
-						h4 {
-							font-size: 0.7em;
-						}
-					}
-					>.item.weekly-budget {
-						clear: both;
-						padding: 30px;
-						width: 100%;
-						float: none;
-						border: 1px solid #39444f;
-						border-top: 0;
-						margin: 0 0 5px 0;
-						h2 {
-							font-size: 2.5em;
-						}
-					}
 					>.item {
 						h4 {
 							font-size: 0.9em;
@@ -1730,29 +1693,28 @@ input[type=submit].button {
 			}
 		}
 		#left-col {
+			width: 15%;
 			#logo {
 				height: 60px;
 				object {
 					width: 30px;
-					height: 25px;
+					padding: 7px 0 0 0;
 				}
 			}
 			#nav {
 				h4 {
 					margin: 20px 0 5px 0;
-					padding-left: 10px;
+					padding-left: 6px;
+					font-size: 0.7em;
 				}
 				li {
 					a {
-						padding: 10px 15px;
+						padding: 10px 6px;
 						font-size: 0.9em;
 						white-space: nowrap;
 						overflow: hidden;
 						text-overflow: ellipsis;
-						.small {
-							display: block;
-						}
-						.large {
+						.fa-solid {
 							display: none;
 						}
 					}
@@ -1800,7 +1762,7 @@ input[type=submit].button {
 		}
 	}
 	#login-container {
-		max-width: 350px;
+		width: 350px;
 		margin: -173px 0 0 -175px;
 		form {
 			.row {
@@ -1848,15 +1810,5 @@ input[type=submit].button {
 		height: 300px;
 		float: none;
 	}
-	#recurring-container {
-		.item {
-			width: 100%;
-			&:nth-child(3n+1) {
-				clear: none;
-			}
-			&:nth-child(2n+1) {
-				clear: none;
-			}
-		}
-	}
+	
 }

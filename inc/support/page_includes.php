@@ -18,14 +18,13 @@
 <title><?= $pageTitle." - ".getSettings('meta_title') ?></title>
 <!-- User Defined Data -->
 <!-- Stylesheet -->
-<link href="<?= $url_website ?>style/main.css?v=1" rel="stylesheet" type="text/css">
+<link href="<?= $url_website ?>style/main.css?v=3" rel="stylesheet" type="text/css">
 <!-- Stylesheet -->
 <!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 <!-- jQuery -->
 <!-- Tooltip -->
 <link rel="stylesheet" type="text/css" href="<?= $url_website ?>node_modules/tooltipster/src/css/tooltipster.css" />
-<link rel="stylesheet" type="text/css" href="<?= $url_website ?>node_modules/tooltipster/src/css/plugins/tooltipster/sideTip/tooltipster-sideTip-light.css" />
 <script type="text/javascript" src="<?= $url_website ?>node_modules/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
 <!-- Tooltip -->
 <!-- Sweet Alerts -->

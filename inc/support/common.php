@@ -13,8 +13,9 @@ require(__DIR__.'/../../vendor/autoload.php');
   DOT ENV
   *****************************
 */
+$external_ip = exec('curl http://ipecho.net/plain; echo'); //die();
 $env_root = dirname(__DIR__, 2);
-if($_SERVER['SERVER_ADDR'] == "127.0.0.1") {
+if($external_ip == "45.8.227.175") {
 	$dotenv = Dotenv\Dotenv::createImmutable($env_root);
 } else {
 	$dotenv = Dotenv\Dotenv::createImmutable($env_root, '.env.dev');

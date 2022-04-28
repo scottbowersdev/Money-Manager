@@ -1,6 +1,5 @@
 @charset "UTF-8";
 @import url("https://fonts.googleapis.com/css?family=Lato:400,300,700,300italic,400italic,900");
-@import url(/Users/scottbowers/Development/code/moneymanager/style/reset.css);
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css");
 html {
   -webkit-font-smoothing: antialiased;
@@ -1140,7 +1139,7 @@ input[type=submit].button {
 }
 
 #container #main-col #main-content .months-table .col.actions .fa {
-  font-size: 1.4em;
+  font-size: 1.1em;
   color: #485561;
   margin: 0 10px;
 }
@@ -1721,7 +1720,7 @@ input[type=submit].button {
     float: none;
     max-height: 60px;
     line-height: normal !important;
-    padding-top: 11px;
+    padding-top: 18px;
   }
   #container #main-col #header .right #month-totals small {
     display: block;
@@ -1763,72 +1762,36 @@ input[type=submit].button {
   }
   #container #main-col #main-content .months-table .col.actions .fa {
     margin: 0 3px;
-    font-size: 0.8em;
   }
   #container #main-col #main-content .totals.padding {
-    padding: 30px;
-  }
-  #container #main-col #main-content .totals > .item.total-out {
-    padding: 30px 0;
-    width: 50%;
-    float: left;
-    margin: 0;
-  }
-  #container #main-col #main-content .totals > .item.total-out h2 {
-    font-size: 1.6em;
-  }
-  #container #main-col #main-content .totals > .item.total-out h4 {
-    font-size: 0.7em;
-  }
-  #container #main-col #main-content .totals > .item.total-remaining {
-    padding: 30px 0;
-    width: 50%;
-    float: right;
-    margin: 0;
-  }
-  #container #main-col #main-content .totals > .item.total-remaining h2 {
-    font-size: 1.6em;
-  }
-  #container #main-col #main-content .totals > .item.total-remaining h4 {
-    font-size: 0.7em;
-  }
-  #container #main-col #main-content .totals > .item.weekly-budget {
-    clear: both;
-    padding: 30px;
-    width: 100%;
-    float: none;
-    border: 1px solid #39444f;
-    border-top: 0;
-    margin: 0 0 5px 0;
-  }
-  #container #main-col #main-content .totals > .item.weekly-budget h2 {
-    font-size: 2.5em;
+    padding: 20px;
   }
   #container #main-col #main-content .totals > .item h4 {
     font-size: 0.9em;
+  }
+  #container #left-col {
+    width: 15%;
   }
   #container #left-col #logo {
     height: 60px;
   }
   #container #left-col #logo object {
     width: 30px;
-    height: 25px;
+    padding: 7px 0 0 0;
   }
   #container #left-col #nav h4 {
     margin: 20px 0 5px 0;
-    padding-left: 10px;
+    padding-left: 6px;
+    font-size: 0.7em;
   }
   #container #left-col #nav li a {
-    padding: 10px 15px;
+    padding: 10px 6px;
     font-size: 0.9em;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  #container #left-col #nav li a .small {
-    display: block;
-  }
-  #container #left-col #nav li a .large {
+  #container #left-col #nav li a .fa-solid {
     display: none;
   }
   .modal {
@@ -1863,7 +1826,7 @@ input[type=submit].button {
     float: none;
   }
   #login-container {
-    max-width: 350px;
+    width: 350px;
     margin: -173px 0 0 -175px;
   }
   #login-container form .row input[type=text] {
@@ -1904,15 +1867,6 @@ input[type=submit].button {
     width: 100%;
     height: 300px;
     float: none;
-  }
-  #recurring-container .item {
-    width: 100%;
-  }
-  #recurring-container .item:nth-child(3n+1) {
-    clear: none;
-  }
-  #recurring-container .item:nth-child(2n+1) {
-    clear: none;
   }
 }
 /*# sourceMappingURL=main.css.map */
