@@ -175,9 +175,17 @@ $(document).ready(function(e) {
 			
 		// Delete Outgoing	
 		} else if(btnFunction == 'delete') {
-			
-			swal({ title: "Are you sure?", text: "Are you sure you wish to delete this recurring payment? This will be removed from all future months.", icon: "warning", showCancelButton: true, confirmButtonText: "Yes, delete it!", closeOnConfirm: false }, function(){
-							
+
+			swal({
+				title: "Are you sure?",
+				text: 'Are you sure you wish to delete this recurring payment? This will be removed from all future months.', 
+				icon: "warning",
+				buttons: true,
+				dangerMode: true,
+				confirmButtonText: "Yes, delete it!"
+			})
+			.then((willDelete) => {
+			if (willDelete) {
 				$.ajax({
 				  url : "<?= $url_website ?>admin/ajax/outgoing-delete.php",
 				  type: "POST",
@@ -204,9 +212,9 @@ $(document).ready(function(e) {
 					  
 				  }
 			  });
-			  
+			}
 			});
-			
+						
 		}
 		
 	});
@@ -223,22 +231,12 @@ $(document).ready(function(e) {
   <div class="padding">
     <div class="fa fa-fw fa-times modal-close"></div>
     <h2>New Recurring Payment</h2>
-    <p><em>Please note: this will edit all future recurring payments also.</em></p>
+    <p>Please note: this will edit all future recurring payments also.</p>
     <form method="post" enctype="multipart/form-data" id="form-submit-new">
       <div class="row">
         <div class="input-day">
           <label for="day">Day of the month</label>
-          <select id="day" name="day[new]">
-            <?php
-              $count = 1;
-              $limit = 28;
-              do {
-                  echo '<option value="'.$count.'"';
-                  if(is_array($_SESSION['error']) && $_POST['day']['new'] == $count) { echo ' selected'; }
-                  echo '>'.$count.'</option>';
-              $count ++; } while($count <= 28);
-            ?>
-          </select>
+          <input type="number" min="1" max="28" id="day" name="day[new]" value="<?= (!empty($_SESSION['error']) ? $_POST['day']['edit'] : FALSE) ?>" />
         </div>
         <div class="input-cost">
           <label for="cost">Cost <small>(GBP)</small></label>
@@ -259,23 +257,13 @@ $(document).ready(function(e) {
   <div class="padding">
     <div class="fa fa-fw fa-times modal-close"></div>
     <h2>Edit Recurring Payment</h2>
-    <p><em>Please note: this will edit all future recurring payments also.</em></p>
+    <p>Please note: this will edit all future recurring payments also.</p>
     <form method="post" enctype="multipart/form-data" id="form-submit-edit">
       <input type="hidden" id="monthID" name="monthID" />
       <div class="row">
         <div class="input-day">
           <label for="day">Day of the month</label>
-          <select id="day" name="day[edit]">
-            <?php
-              $count = 1;
-              $limit = 28;
-              do {
-                  echo '<option value="'.$count.'"';
-                  if(is_array($_SESSION['error']) && $_POST['day']['edit'] == $count) { echo ' selected'; }
-                  echo '>'.$count.'</option>';
-              $count ++; } while($count <= 28);
-            ?>
-          </select>
+          <input type="number" min="1" max="28" id="day" name="day[edit]" value="<?= (!empty($_SESSION['error']) ? $_POST['day']['edit'] : FALSE) ?>" />
         </div>
         <div class="input-cost">
           <label for="cost">Cost <small>(GBP)</small></label>
@@ -353,57 +341,7 @@ $(document).ready(function(e) {
         <div class="clr"></div>
       </div>
       <!-- TOTALS --> 
-      
-      <!-- CHARTS -->
-      <div class="charts" style="width:100%;">
-      
-        <?php
-		$daysCount = 1;
-		$daysInMonth = date("t");
-		?>
-        
-		<script type="text/javascript">
-        $(function () {
-            $("#line-chart").CanvasJSChart({
-            	animationEnabled: true,
-				title:{
-					text: "Day by Day", 
-					fontColor: "#39444f",
-					fontFamily: "'Lato',sans-serif",  
-					margin: 20,
-				},
-				axisX:{
-				   titleFontFamily: "'Lato',sans-serif",
-				 },
-				 legend:{
-				  fontFamily: "'Lato',sans-serif",
-				 },
-                data: [{
-					type: "line",
-					showInLegend: true,
-					lineThickness: 2,
-					name: "Total Out",
-					color: "#2ecc71",
-					labelFontFamily: "'Lato',sans-serif",  
-					toolTipContent: "{x} - &pound;{y}",
-					//indexLabel: "{label} {y}%", 
-					dataPoints: [
-						<?php for ($daysCount = 1; $daysCount <= $daysInMonth; $daysCount++) { ?>
-						{ x: <?= $daysCount ?>, y: <?= ($dailyTotals[$daysCount] ? $dailyTotals[$daysCount] : '0') ?> },
-						<?php } ?>
-					]
-            }]
-        });
-        
-        });
-        </script>
-        <div id="line-chart" class="chart" style="width:100%; padding:0 !important;"></div>
-        
-        <div class="clr"></div>
-        
-      </div>
-      <!-- CHARTS -->
-
+    
     </div>
   
   </div>

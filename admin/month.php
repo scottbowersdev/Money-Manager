@@ -189,9 +189,9 @@ $(document).ready(function(e) {
 							  
 							setTimeout(function(){
 							   window.location.reload(1);
-							}, 2000);
+							}, 1000);
 							  
-							swal({ title: "Success", text: "Monthly income updated", icon: "success", timer: 2000 });
+							swal({ title: "Success", text: "Monthly income updated", icon: "success", timer: 1000, showConfirmButton: false });
 							  
 						  } else  {
 							
@@ -234,9 +234,9 @@ $(document).ready(function(e) {
 					  
 					setTimeout(function(){
 					   window.location.reload(1);
-					}, 2000);
+					}, 1000);
 					  
-					swal({ title: "Success", text: "Outogoing marked as "+(btnFunction == 'paid' ? "paid" : "not paid"), icon: "success", timer: 2000 });
+					swal({ title: "Success", text: "Outogoing marked as "+(btnFunction == 'paid' ? "paid" : "not paid"), icon: "success", timer: 1000, showConfirmButton: false });
 					  
 				  } else  {
 					
@@ -266,9 +266,17 @@ $(document).ready(function(e) {
 			
 		// Delete Outgoing	
 		} else if(btnFunction == 'delete') {
-			
-			swal({ title: "Are you sure?", text: "Are you sure you wish to delete this outgoing?", icon: "warning", showCancelButton: true, confirmButtonText: "Yes, delete it!", closeOnConfirm: false }, function(){
-							
+
+			swal({
+				title: "Are you sure?",
+				text: 'Are you sure you wish to delete this outgoing?', 
+				icon: "warning",
+				buttons: true,
+				dangerMode: true,
+				confirmButtonText: "Yes, delete it!"
+			})
+			.then((willDelete) => {
+			if (willDelete) {
 				$.ajax({
 				  url : "<?= $url_website ?>admin/ajax/outgoing-delete.php",
 				  type: "POST",
@@ -279,9 +287,9 @@ $(document).ready(function(e) {
 						  
 						setTimeout(function(){
 						   window.location.reload(1);
-						}, 2000);
+						}, 1000);
 						  
-						swal({ title: "Success", text: "Outogoing has been deleted.", icon: "success", timer: 2000 });
+						swal({ title: "Success", text: "Outogoing has been deleted.", icon: "success", timer: 1000, showConfirmButton: false });
 						  
 					  } else  {
 						
@@ -295,7 +303,7 @@ $(document).ready(function(e) {
 					  
 				  }
 			  });
-			  
+			}
 			});
 			
 		}
@@ -318,20 +326,10 @@ $(document).ready(function(e) {
       <div class="row">
         <div class="input-day">
           <label for="day">Day of the month</label>
-          <select id="day" name="day[new]">
-            <?php
-              $count = 1;
-              $limit = 28;
-              do {
-                  echo '<option value="'.$count.'"';
-                  if(!empty($_SESSION['error']) && $_POST['day']['new'] == $count) { echo ' selected'; }
-                  echo '>'.$count.'</option>';
-              $count ++; } while($count <= 28);
-            ?>
-          </select>
+          <input type="number" min="1" max="28" id="day" name="day[new]" value="<?= (!empty($_SESSION['error']) ? $_POST['day']['new'] : FALSE) ?>" />
         </div>
         <div class="input-cost">
-          <label for="cost">Cost <small>(GBP)</small></label>
+          <label for="cost">Cost</label>
           <input type="number" min="0" step="any" id="cost" name="cost[new]" placeholder="&pound;" value="<?= (is_array($_SESSION['error']) ? $_POST['cost']['new'] : FALSE) ?>" />
         </div>
         <div class="clr"></div>
@@ -354,20 +352,10 @@ $(document).ready(function(e) {
       <div class="row">
         <div class="input-day">
           <label for="day">Day of the month</label>
-          <select id="day" name="day[edit]">
-            <?php
-              $count = 1;
-              $limit = 28;
-              do {
-                  echo '<option value="'.$count.'"';
-                  if(is_array($_SESSION['error']) && $_POST['day']['edit'] == $count) { echo ' selected'; }
-                  echo '>'.$count.'</option>';
-              $count ++; } while($count <= 28);
-            ?>
-          </select>
+          <input type="number" min="1" max="28" id="day" name="day[edit]" value="<?= (!empty($_SESSION['error']) ? $_POST['day']['edit'] : FALSE) ?>" />
         </div>
         <div class="input-cost">
-          <label for="cost">Cost <small>(GBP)</small></label>
+          <label for="cost">Cost</label>
           <input type="number" min="0" step="any" id="cost" name="cost[edit]" placeholder="&pound;" value="<?= (is_array($_SESSION['error']) ? $_POST['cost']['edit'] : FALSE) ?>" />
         </div>
         <div class="clr"></div>
@@ -436,19 +424,7 @@ $(document).ready(function(e) {
       
       </div>
       <!-- TABLE -->
-      
-      <!-- POTS -->
-        <div class="totals padding">
-            <?php foreach($pots as $pot_name => $cost) { ?>
-          <div class="item">
-            <h4><?= $pot_name ?></h4>
-            <h2>&pound;<?= number_format($cost,2) ?></h2>
-            </div>
-            <?php } ?>
-          <div class="clr"></div>
-        </div>
-      <!-- POTS --> 
-      
+
       <!-- TOTALS -->
         <div class="totals padding">
           <div class="item total-out">
@@ -470,85 +446,18 @@ $(document).ready(function(e) {
         </div>
       <!-- TOTALS --> 
       
-      <!-- CHARTS -->
-      <div class="charts padding">
-      
-		<script type="text/javascript">
-        $(function () {
-            $("#out-in-chart").CanvasJSChart({
-            	animationEnabled: true,
-				title:{
-					text: "Money Out VS Money In", 
-					fontColor: "#39444f",
-					fontFamily: "'Lato',sans-serif",  
-					margin: 20,
-				},
-                data: [
-                {
-                type: "pie",
-				showInLegend: true, 
-				labelFontFamily: "tahoma",
-				toolTipContent: "{label}: <strong>{y}%</strong>",
-				indexLabel: "{label} {y}%", 
-                dataPoints: [
-                    {  y: <?= number_format($monthlyTotal/$resGetMonth['income']*100,0) ?>, legendText: " ", label: "Total Out", color: "#e74c3c" },
-					{  y: <?= number_format(($resGetMonth['income'] - $monthlyTotal)/$resGetMonth['income']*100,0) ?>, legendText: " ", label: "Total Remaining", color: "#e67e22" },
-                ]
-            }
-            ]
-        });
-        
-        });
-        </script>
-        <div id="out-in-chart" class="chart"></div>
-        
-        <?php
-		$daysCount = 1;
-		$daysInMonth = date("t");
-		?>
-        
-		<script type="text/javascript">
-        $(function () {
-            $("#line-chart").CanvasJSChart({
-            	animationEnabled: true,
-				title:{
-					text: "Day by Day", 
-					fontColor: "#39444f",
-					fontFamily: "'Lato',sans-serif",  
-					margin: 20,
-				},
-				axisX:{
-				   titleFontFamily: "'Lato',sans-serif",
-				 },
-				 legend:{
-				  fontFamily: "'Lato',sans-serif",
-				 },
-                data: [{
-					type: "line",
-					showInLegend: true,
-					lineThickness: 2,
-					name: "Total Out",
-					color: "#2ecc71",
-					labelFontFamily: "'Lato',sans-serif",  
-					toolTipContent: "{x} - &pound;{y}",
-					//indexLabel: "{label} {y}%", 
-					dataPoints: [
-						<?php for ($daysCount = 1; $daysCount <= $daysInMonth; $daysCount++) { ?>
-						{ x: <?= $daysCount ?>, y: <?= ($dailyTotals[$daysCount] ? $dailyTotals[$daysCount] : '0') ?> },
-						<?php } ?>
-					]
-            }]
-        });
-        
-        });
-        </script>
-        <div id="line-chart" class="chart"></div>
-        
-        <div class="clr"></div>
-        
-      </div>
-      <!-- CHARTS -->
-
+      <!-- POTS -->
+        <div class="totals padding">
+            <?php foreach($pots as $pot_name => $cost) { ?>
+          <div class="item">
+            <h4><?= $pot_name ?></h4>
+            <h2>&pound;<?= number_format($cost,2) ?></h2>
+            </div>
+            <?php } ?>
+          <div class="clr"></div>
+        </div>
+      <!-- POTS --> 
+            
     </div>
   
   </div>

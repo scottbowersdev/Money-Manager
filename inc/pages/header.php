@@ -1,15 +1,15 @@
 <div id="header">
   <div class="padding">
     <?php if($page == 'View Month') { ?>
-    <h1><span class="fa fa-fw fa-calendar"></span> <?= $monthName ?><small><?= $year ?></small></h1>
+    <h1><?= $monthName ?><small><?= $year ?></small></h1>
     <?php } else { ?>
-      <h1><span class="fa fa-fw fa-<?= ($page == "Recurring Payments" ? 'repeat' : 'gift') ?>"></span> <?= $page ?></h1>
+      <h1><?= $page ?></h1>
     <?php } ?>
     <div class="right">
       <div class="button solid fa fa-fw fa-bars tooltip" title="Main Menu" id="btn-menu"></div>
       <div class="button solid fa fa-fw fa-plus tooltip" title="Create a new outgoing" id="btn-new-outgoing"></div>
       <?php if($page == 'View Month') { ?>
-      <div id="month-totals"><small>This Month</small> &pound;<input type="text" name="monthlyIcome" id="monthlyIncome" size="8" class="tooltip" title="Click to edit, then hit Enter" value="<?= number_format($resGetMonth['income'],2) ?>" readonly /></div>
+      <div id="month-totals">&pound;<input type="text" name="monthlyIcome" id="monthlyIncome" size="8" class="tooltip" title="Click to edit, then hit Enter" value="<?= number_format($resGetMonth['income'],2) ?>" readonly /></div>
       <?php } ?>
       <div class="clr"></div>
     </div>

@@ -24,6 +24,7 @@
 <!-- jQuery -->
 <!-- Tooltip -->
 <link rel="stylesheet" type="text/css" href="<?= $url_website ?>node_modules/tooltipster/src/css/tooltipster.css" />
+<link rel="stylesheet" type="text/css" href="<?= $url_website ?>node_modules/tooltipster/src/css/plugins/tooltipster/sideTip/tooltipster-sideTip-light.css" />
 <script type="text/javascript" src="<?= $url_website ?>node_modules/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
 <!-- Tooltip -->
 <!-- Sweet Alerts -->
@@ -50,6 +51,8 @@ $(document).ready(function(e) {
 	// Tooltip
 	$('.tooltip').tooltipster({
 		touchDevices : false,
+		theme: 'my-tooltipser-theme', 
+		arrow: true
 	});	
 	
 	// Close Modal

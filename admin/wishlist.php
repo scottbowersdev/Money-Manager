@@ -156,9 +156,17 @@ $(document).ready(function(e) {
 			
 		// Delete Outgoing	
 		} else if(btnFunction == 'delete') {
-			
-			swal({ title: "Are you sure?", text: "Are you sure you wish to delete this wishlist item?", icon: "warning", showCancelButton: true, confirmButtonText: "Yes, delete it!", closeOnConfirm: false }, function(){
-							
+
+			swal({
+				title: "Are you sure?",
+				text: 'Are you sure you wish to delete this wishlist item?', 
+				icon: "warning",
+				buttons: true,
+				dangerMode: true,
+				confirmButtonText: "Yes, delete it!"
+			})
+			.then((willDelete) => {
+			if (willDelete) {
 				$.ajax({
 				  url : "<?= $url_website ?>admin/ajax/wishlist-delete.php",
 				  type: "POST",
@@ -185,9 +193,9 @@ $(document).ready(function(e) {
 					  
 				  }
 			  });
-			  
+			}
 			});
-			
+						
 		}
 		
 	});

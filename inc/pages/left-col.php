@@ -12,7 +12,7 @@ $datePeriod   = new DatePeriod($startDate, $dateInterval, $endDate);
 
 <div id="left-col">
   <div id="logo">
-    <a href="<?= $url_website ?>admin/month/<?= date('n') ?>/<?= date('Y') ?>/"><img src="<?= $url_website ?>img/logo.png" alt="Money Manager" /></a>
+    <a href="<?= $url_website ?>admin/month/<?= date('n') ?>/<?= date('Y') ?>/"><object data="<?= $url_website ?>img/logo.svg"> </object></a>
   </div>
   <div id="nav">
   
@@ -22,7 +22,7 @@ $datePeriod   = new DatePeriod($startDate, $dateInterval, $endDate);
 		
 		if($year_loop != $date->format('Y')) { echo '<h4>'.$date->format('Y').'</h4>'; $year_loop = $date->format('Y'); }
 					
-		echo '<li><a href="'.$url_website.'admin/month/'.$date->format('n').'/'.$date->format('Y').'/"'.($monthNumber == $date->format('n') && $year == $date->format('Y') ? ' class="selected"' : FALSE).'><span class="large">'.$date->format('F').'</span><span class="small">'.$date->format('M').'</span></a></li>';
+		echo '<li><a href="'.$url_website.'admin/month/'.$date->format('n').'/'.$date->format('Y').'/"'.($monthNumber == $date->format('n') && $year == $date->format('Y') ? ' class="selected"' : FALSE).'><i class="fa-solid fa-angle-right"></i> <span class="large">'.$date->format('M').'</span><span class="small">'.$date->format('M').'</span></a></li>';
 						
 	}
 	?>

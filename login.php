@@ -106,7 +106,7 @@ if(isset($_POST['login'])) {
 
 <div id="login-container">
 
-  <div class="padding"><img src="<?= $url_website ?>img/logo.png" alt="Money Manager" /></div>
+  <div class="padding"><object data="<?= $url_website ?>img/logo.svg"> </object></div>
       
   <form method="post" enctype="multipart/form-data">
   	<div class="padding">
@@ -123,9 +123,7 @@ if(isset($_POST['login'])) {
     </div>
     
     <input type="submit" name="login" id="login" value="Login" class="button" />
-    
-    <p><small>Don't have an account? <a href="<?= $url_website ?>signup/1/">Sign up here</a></small></p>
-  
+      
   </form>
     
 </div>
