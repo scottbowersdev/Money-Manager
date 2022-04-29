@@ -273,6 +273,17 @@ $(function() {
 });
 
 $(document).ready(function(e) {
+
+	// Context Menu
+	$('.col.actions .fa-ellipsis-vertical').on('click', function (e) {
+		$(this).next('.context-menu').stop(true, true).slideDown();
+		$(this).parent().siblings().children('.context-menu').stop(true, true).slideUp();
+		return false;
+	});
+	$('.col.actions').on('mouseleave', function () {
+		$(this).children('.context-menu').stop(true, true).slideUp();
+		return false;
+	});
     
 	// New outgoing show
 	$('#btn-new-outgoing').on('click tap', function() {
@@ -329,7 +340,7 @@ $(document).ready(function(e) {
 	});
 	
 	// Outgoing Actions
-	$('.months-table .fa').on('click tap', function() {
+	$('.months-table .context-menu li').on('click tap', function() {
 		
 		var btnFunction = $(this).attr('data-function');
 		var id = $(this).attr('data-id');
@@ -500,7 +511,7 @@ $(document).ready(function(e) {
           <div class="col day">Day</div>
           <div class="col desc">Description</div>
           <div class="col cost">Cost</div>
-          <div class="col actions">Actions</div>
+          <div class="col actions">&nbsp;</div>
         </div>
         
         <?php 
@@ -520,19 +531,22 @@ $(document).ready(function(e) {
 			preg_match_all("/\\[(.*?)\\]/", $item['title'], $matches); 
 		
 			if($matches[1][0] != '') {
-				$item['title'] = str_replace("[".$matches[1][0]."] ", "<span class=\"mob-hide\">[".$matches[1][0]."]</span> ", $item['title']);
+				$new_title = str_replace("[".$matches[1][0]."] ", "<span class=\"mob-hide\">[".$matches[1][0]."]</span> ", $item['title']);
 			}
                 
         ?>
         <div class="row<?= ($count == $totGetTotRecurring ? ' last-recurring"' : FALSE) ?>" data-function="<?= ($item['paid'] == 1 ? 'not-' : FALSE) ?>paid" data-id="<?= $item['id'] ?>">
           <div class="col day<?= ($count%2==0 ? ' even' : FALSE).($item['paid'] == 1 ? ' paid' : FALSE).($resGetMonth['year'].($resGetMonth['month'] < 10 ? '0'.$resGetMonth['month'] : $resGetMonth['month']).($item['day'] < 10 ? '0'.$item['day'] : $item['day']) < date('Ymd') ? ' overdue' : FALSE) ?>"><?= $item['day'] ?><small><?= $ordinalSuffix ?></small></div>
-          <div class="col desc<?= ($count%2==0 ? ' even' : FALSE) ?>"><?= $item['title'] ?></div>
+          <div class="col desc<?= ($count%2==0 ? ' even' : FALSE) ?>"><?= $new_title ?></div>
           <div class="col cost<?= ($count%2==0 ? ' even' : FALSE) ?>">&pound;<?= number_format($item['cost'],2) ?></div>
           <div class="col actions<?= ($count%2==0 ? ' even' : FALSE) ?>">
-            <?php if($item['paid'] == 1) { ?><a href="#" class="fa fa-fw fa-times tooltip" data-function="not-paid" data-id="<?= $item['id'] ?>" title="Mark this as not paid"></a><?php } else { ?><a href="#" class="fa fa-fw fa-check tooltip" data-function="paid" data-id="<?= $item['id'] ?>" title="Mark this as paid"></a><?php } ?>
-            <a href="#" class="fa fa-fw fa-pencil tooltip" data-function="edit" data-id="<?= $item['id'] ?>" data-content='{"day": "<?= $item['day'] ?>", "cost": "<?= $item['cost'] ?>", "title": "<?= str_replace("'","~~~",$item['title']) ?>"}' title="Edit this outgoing"></a>
-            <a href="#" class="fa fa-fw fa-trash tooltip" data-function="delete" data-id="<?= $item['id'] ?>" title="Delete this outgoing"></a>
-          </div>
+			<i class="fa-solid fa-ellipsis-vertical"></i>
+			<div class="context-menu">
+				<li data-function="<?= ($item['paid'] == 1 ? 'not-' : FALSE) ?>paid" data-id="<?= $item['id'] ?>"><i class="fa fa-fw fa-<?= ($item['paid'] == 1 ? 'times' : 'check') ?>"></i> Mark as <?= ($item['paid'] == 1 ? 'un' : FALSE) ?>paid</li>
+				<li data-function="edit" data-id="<?= $item['id'] ?>" data-content='{"day": "<?= $item['day'] ?>", "cost": "<?= $item['cost'] ?>", "title": "<?= str_replace("'","~~~",$item['title']) ?>"}'><i class="fa fa-fw fa-pencil"></i> Edit</li>
+				<li data-function="delete" data-id="<?= $item['id'] ?>"><i class="fa fa-fw fa-trash"></i> Delete</li>
+          	</div>
+		  </div>
         </div>
         <?php 
         

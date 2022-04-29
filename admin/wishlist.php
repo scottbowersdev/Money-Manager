@@ -208,7 +208,18 @@ $(function() {
 });
 
 $(document).ready(function(e) {
-    
+
+	// Context Menu
+	$('.col.actions .fa-ellipsis-vertical').on('click', function (e) {
+		$(this).next('.context-menu').stop(true, true).slideDown();
+		$(this).parent().siblings().children('.context-menu').stop(true, true).slideUp();
+		return false;
+	});
+	$('.col.actions').on('mouseleave', function () {
+		$(this).children('.context-menu').stop(true, true).slideUp();
+		return false;
+	});
+        
 	// New outgoing show
 	$('#btn-new-outgoing').on('click tap', function() {
 				
@@ -218,7 +229,7 @@ $(document).ready(function(e) {
 	});
 	
 	// Outgoing Actions
-	$('.months-table .fa').on('click tap', function() {
+	$('.months-table .context-menu li').on('click tap', function() {
 		
 		var btnFunction = $(this).attr('data-function');
 		var id = $(this).attr('data-id');
@@ -396,7 +407,7 @@ $(document).ready(function(e) {
           <div class="col day">Priority</div>
           <div class="col desc">Description</div>
           <div class="col cost">Cost</div>
-          <div class="col actions">Actions</div>
+          <div class="col actions">&nbsp;</div>
         </div>
         
         <?php foreach($resGetWishlist as $item) { $totalAmount += $item['cost']; ?>
@@ -405,9 +416,13 @@ $(document).ready(function(e) {
 					<div class="col desc<?= ($count%2==0 ? ' even' : FALSE) ?>"><?= $item['title'] ?><?php if($item['url']) { ?> <a href="<?= $item['url'] ?>" target="_blank" class="fa fa-fw fa-external-link"></a><?php } ?></div>
           <div class="col cost<?= ($count%2==0 ? ' even' : FALSE) ?>">&pound;<?= number_format($item['cost'],2) ?></div>
           <div class="col actions<?= ($count%2==0 ? ' even' : FALSE) ?>">
-            <a href="#" class="fa fa-fw fa-check tooltip" data-function="paid" data-id="<?= $item['id'] ?>" title="Mark this as purchased"></a>
-            <a href="#" class="fa fa-fw fa-pencil tooltip" data-function="edit" data-id="<?= $item['id'] ?>" data-content='{"priority": "<?= $item['priority'] ?>", "url": "<?= $item['url'] ?>", "cost": "<?= $item['cost'] ?>", "title": "<?= str_replace("'","~~~",$item['title']) ?>"}' title="Edit this item"></a>
-            <a href="#" class="fa fa-fw fa-trash tooltip" data-function="delete" data-id="<?= $item['id'] ?>" title="Delete this item"></a>
+
+			<i class="fa-solid fa-ellipsis-vertical"></i>
+			<div class="context-menu">
+				<li data-function="paid" data-id="<?= $item['id'] ?>"><i class="fa fa-fw fa-check"></i> Mark as purchased</li>
+				<li data-function="edit" data-id="<?= $item['id'] ?>" data-content='{"priority": "<?= $item['priority'] ?>", "url": "<?= $item['url'] ?>", "cost": "<?= $item['cost'] ?>", "title": "<?= str_replace("'","~~~",$item['title']) ?>"}'><i class="fa fa-fw fa-pencil"></i> Edit</li>
+				<li data-function="delete" data-id="<?= $item['id'] ?>"><i class="fa fa-fw fa-trash"></i> Delete</li>
+          	</div>
           </div>
         </div>
         <?php $count++; } ?>
