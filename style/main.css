@@ -3,6 +3,7 @@
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css");
 html {
   -webkit-font-smoothing: antialiased;
+  height: 100%;
 }
 
 body {
@@ -14,6 +15,7 @@ body {
   color: #333333;
   line-height: 2em;
   background: #F7F8FA;
+  min-height: 100%;
 }
 
 h1 {

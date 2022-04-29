@@ -6,6 +6,7 @@ $bg_cream: #F7F8FA;
 
 html {
 	-webkit-font-smoothing: antialiased;
+	height: 100%;
 }
 body {
 	margin: 0;
@@ -16,6 +17,7 @@ body {
 	color: #333333;
 	line-height: 2em;
 	background: $bg_cream;
+	min-height: 100%;
 }
 h1 {
 	font-family: 'Lato',sans-serif;

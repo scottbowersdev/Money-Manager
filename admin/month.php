@@ -155,24 +155,123 @@ if(isset($_POST['submit-edit'])) {
 <?php include('../inc/support/page_includes.php'); ?>
 <!-- Charts -->
 <script type="text/javascript" src="<?= $url_website ?>node_modules/jquery-touchswipe/jquery.touchSwipe.min.js"></script>
-<script src="<?= $url_website ?>node_modules/canvasjs/dist/jquery.canvasjs.min.js"></script>
 <!-- Charts -->
 <script type="text/javascript">
-/*
+// Swipe Actions
 $(function() {
   $(".months-table .row").swipe( {
 
+	// Delete
     swipeLeft:function(event, direction, distance, duration) {
-		alert("You swiped " + direction);  
+
+		var id = $(this).attr('data-id');
+
+		swal({
+			title: "Are you sure?",
+			text: 'Are you sure you wish to delete this outgoing?', 
+			icon: "warning",
+			buttons: true,
+			dangerMode: true,
+			confirmButtonText: "Yes, delete it!"
+		})
+		.then((willDelete) => {
+		if (willDelete) {
+			$.ajax({
+				url : "<?= $url_website ?>admin/ajax/outgoing-delete.php",
+				type: "POST",
+				data : 'id='+id,
+				success: function(data, textStatus, jqXHR) {
+									
+					if(textStatus == 'success') {
+						
+					setTimeout(function(){
+						window.location.reload(1);
+					}, 1000);
+						
+					swal({ title: "Success", text: "Outogoing has been deleted.", icon: "success", timer: 1000, showConfirmButton: false });
+						
+					} else  {
+					
+					swal({ title: "Error", text: "There has been an error with your submission. Please try again later.", icon: "error", timer: 5000 });
+						
+					}
+					
+				}, error: function(jqXHR, textStatus, errorThrown) {
+					
+					swal({ title: "Error", text: "There has been an error with your submission. Please try again later.<Br />"+jqXHR+'--'+textStatus+'--'+errorThrown, icon: "error", timer: 10000 });
+					
+				}
+			});
+		}
+		});
+
 	},
 
+	// Mark as paid / unpaid
 	swipeRight:function(event, direction, distance, duration) {
-		alert("You swiped " + direction); 
+		
+		var btnFunction = $(this).attr('data-function');
+		var id = $(this).attr('data-id');
+		
+		swal({
+			title: "Mark as "+(btnFunction == 'paid' ? "paid" : "not paid")+"?",
+			text: 'Are you sure you wish to update this outgoing?', 
+			icon: "warning",
+			buttons: true,
+			dangerMode: true,
+			cancel: {
+				text: "Cancel",
+				value: null,
+				visible: false,
+				className: "",
+				closeModal: true,
+			},
+			confirm: {
+				text: "Yes",
+				value: true,
+				visible: true,
+				className: "",
+				closeModal: true
+			}
+		})
+		.then((willDelete) => {
+		if (willDelete) {
+			if(btnFunction == 'paid') { var formData = 'paid=1'; } else { var formData = 'paid=0'; }
+		
+			$.ajax({
+			  url : "<?= $url_website ?>admin/ajax/outgoing-paid-unpaid.php",
+			  type: "POST",
+			  data : formData+'&id='+id,
+			  success: function(data, textStatus, jqXHR) {
+				  				  
+				  if(textStatus == 'success') {
+					  
+					setTimeout(function(){
+					   window.location.reload(1);
+					}, 1000);
+					  
+					swal({ title: "Success", text: "Outogoing marked as "+(btnFunction == 'paid' ? "paid" : "not paid"), icon: "success", timer: 1000, showConfirmButton: false });
+					  
+				  } else  {
+					
+					swal({ title: "Error", text: "There has been an error with your submission. Please try again later.", icon: "error", timer: 5000 });
+					  
+				  }
+				  
+			  }, error: function(jqXHR, textStatus, errorThrown) {
+				  
+				  swal({ title: "Error", text: "There has been an error with your submission. Please try again later.<Br />"+jqXHR+'--'+textStatus+'--'+errorThrown, icon: "error", timer: 10000 });
+				  
+			  }
+		  });
+		}
+		});
+
 	},
 
   });
 });
-*/
+
 $(document).ready(function(e) {
     
 	// New outgoing show
@@ -425,7 +524,7 @@ $(document).ready(function(e) {
 			}
                 
         ?>
-        <div class="row<?= ($count == $totGetTotRecurring ? ' last-recurring"' : FALSE) ?>">
+        <div class="row<?= ($count == $totGetTotRecurring ? ' last-recurring"' : FALSE) ?>" data-function="<?= ($item['paid'] == 1 ? 'not-' : FALSE) ?>paid" data-id="<?= $item['id'] ?>">
           <div class="col day<?= ($count%2==0 ? ' even' : FALSE).($item['paid'] == 1 ? ' paid' : FALSE).($resGetMonth['year'].($resGetMonth['month'] < 10 ? '0'.$resGetMonth['month'] : $resGetMonth['month']).($item['day'] < 10 ? '0'.$item['day'] : $item['day']) < date('Ymd') ? ' overdue' : FALSE) ?>"><?= $item['day'] ?><small><?= $ordinalSuffix ?></small></div>
           <div class="col desc<?= ($count%2==0 ? ' even' : FALSE) ?>"><?= $item['title'] ?></div>
           <div class="col cost<?= ($count%2==0 ? ' even' : FALSE) ?>">&pound;<?= number_format($item['cost'],2) ?></div>
