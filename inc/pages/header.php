@@ -1,6 +1,6 @@
 <div id="header">
   <div class="padding">
-    <object data="<?= $url_website ?>img/logo.svg"> </object>
+    <a href="<?= $url_website ?>month-list/"><object data="<?= $url_website ?>img/logo.svg"> </object></a>
     <?php if($page == 'View Month') { ?>
     <h1><?= $monthName ?><small><?= $year ?></small></h1>
     <?php } else { ?>

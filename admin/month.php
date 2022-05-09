@@ -532,6 +532,8 @@ $(document).ready(function(e) {
 		
 			if($matches[1][0] != '') {
 				$new_title = str_replace("[".$matches[1][0]."] ", "<span class=\"mob-hide\">[".$matches[1][0]."]</span> ", $item['title']);
+			} else {
+				$new_title =  $item['title'];
 			}
                 
         ?>
