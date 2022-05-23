@@ -28,6 +28,18 @@ $qryGetWishlist->execute(array("user_id" => $_SESSION['admin']['id']));
 $resGetWishlist = $qryGetWishlist->fetchAll(PDO::FETCH_ASSOC);
 $totGetWishlist = $qryGetWishlist->rowCount();
 
+// Figure out each pot
+foreach($resGetWishlist as $i => $item) {
+    
+    preg_match_all("/\\[(.*?)\\]/", $item['title'], $matches); 
+    
+    if($matches[1][0] != '') {
+        $pots[$matches[1][0]] += $item['cost'];
+    }
+    
+}
+
+
 /**
  * Submit changes / new item
  */
@@ -410,10 +422,23 @@ $(document).ready(function(e) {
           <div class="col actions">&nbsp;</div>
         </div>
         
-        <?php foreach($resGetWishlist as $item) { $totalAmount += $item['cost']; ?>
+        <?php 
+		foreach($resGetWishlist as $item) { 
+			
+			$totalAmount += $item['cost'];
+
+			preg_match_all("/\\[(.*?)\\]/", $item['title'], $matches); 
+		
+			if($matches[1][0] != '') {
+				$new_title = str_replace("[".$matches[1][0]."] ", "<span class=\"mob-hide\">[".$matches[1][0]."]</span> ", $item['title']);
+			} else {
+				$new_title =  $item['title'];
+			}
+			
+		?>
         <div class="row<?= ($count == $totGetWishlist ? ' last-recurring"' : FALSE) ?>" data-function="paid" data-id="<?= $item['id'] ?>">
           <div class="col day<?= ($count%2==0 ? ' even' : FALSE) ?>"><?= $item['priority'] ?></div>
-					<div class="col desc<?= ($count%2==0 ? ' even' : FALSE) ?>"><?= $item['title'] ?><?php if($item['url']) { ?> <a href="<?= $item['url'] ?>" target="_blank" class="fa fa-fw fa-external-link"></a><?php } ?></div>
+					<div class="col desc<?= ($count%2==0 ? ' even' : FALSE) ?>"><?= $new_title ?><?php if($item['url']) { ?> <a href="<?= $item['url'] ?>" target="_blank" class="fa fa-fw fa-external-link"></a><?php } ?></div>
           <div class="col cost<?= ($count%2==0 ? ' even' : FALSE) ?>">&pound;<?= number_format($item['cost'],2) ?></div>
           <div class="col actions<?= ($count%2==0 ? ' even' : FALSE) ?>">
 
@@ -443,6 +468,18 @@ $(document).ready(function(e) {
         </div>
         
       <!-- TOTALS --> 
+
+      <!-- POTS -->
+        <div class="totals padding">
+            <?php foreach($pots as $pot_name => $cost) { ?>
+          <div class="item">
+            <h4><?= $pot_name ?></h4>
+            <h2>&pound;<?= number_format($cost,2) ?></h2>
+            </div>
+            <?php } ?>
+          <div class="clr"></div>
+        </div>
+      <!-- POTS --> 
       
     </div>
   
